@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
+
+		<script src="resources/sap-ui-core.js"
+				id="sap-ui-bootstrap"
+				data-sap-ui-libs="sap.m"
+				data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		<!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme -->
+
+		<script>
+		
+		//Create Mobile App
+		var mApp = new sap.m.App("mobileAPP",{
+			initialPage: "page1Id"
+		});
+		
+		//Create Page One
+		var page1 = new sap.m.Page("page1Id",{
+			title: "Welcome to Page One",
+			showNavButton: false,
+			content: new sap.m.Button({
+				text: "Goto Page Two",
+				press: function(){
+					mApp.to("page2Id");
+				}
+			})
+		});
+		
+		//Create Page Two
+		var page2 = new sap.m.Page("page2Id", {
+			title: "Welcome to Page Two",
+			showNavButton: true,
+			navButtonPress: function(){
+				mApp.back();
+			}
+		});
+		
+		//Add both pages to the app
+		mApp.addPage(page1).addPage(page2);
+		mApp.placeAt("content");
+
+			
+		</script>
+
+	</head>
+	<body class="sapUiBody" role="application">
+		<div id="content"></div>
+	</body>
+</html>
